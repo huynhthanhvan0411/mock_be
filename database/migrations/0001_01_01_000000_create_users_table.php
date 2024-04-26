@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->date('birthday')->nullable();
-            $table->tinyInteger('gender')->default(1);
+            $table->tinyInteger('gender')->default(1);          
             $table->integer('phone')->nullable();
             $table->string('avatar')->nullable();
             $table->decimal('salary')->nullable();
