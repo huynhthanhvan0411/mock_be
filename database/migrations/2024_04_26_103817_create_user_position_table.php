@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_role', function (Blueprint $table) {
+        Schema::create('user_position', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('position_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('role_id');
             $table->timestamps();
             $table->softDeletes();
+            //add foreign keys 
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_role');
+        Schema::dropIfExists('user_position');
     }
 };
