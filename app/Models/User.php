@@ -17,9 +17,28 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        // 'name',
+        // 'email',
+        // 'password',
+        'username',
         'email',
+        'birthday',
+        'gender',
+        'phone',
+        'avatar',
+        'salary',
+        'contract_start_date',
+        'contract_end_date',
+        'division_id',
+        'employment_type',
+        'address',
+        'identification',
+        'phone_family',
+        'status',
+        'email_verified_at',
         'password',
+        'remember_token',
+     
     ];
 
     /**
@@ -42,7 +61,37 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'birthday' => 'date',
+            'contract_start_date' => 'date',
+            'contract_end_date' => 'date',
+
         ];
+    }
+    //
+    public function getGenderAttribute($value)
+    {
+        return $value === 1 ? 'Male' : 'Female';
+    }
+
+    /**
+     * Get the user's status.
+     *
+     * @param  int  $value
+     * @return string
+     */
+    public function getStatusAttribute($value)
+    {
+        return $value === 1 ? 'Active' : 'Inactive';
+    }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->username;
     }
 
     //
